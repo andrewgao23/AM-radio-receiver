@@ -15,7 +15,7 @@ Radio receiver built using an RF module + superheterodyne AM receiver (active ba
 Equipment: EDU33212A function generator, MSO-X 3024T oscilloscope, protoboard
 
 ## Diode RC envelope detector
-I started off by building an RC circuit:
+I started off by building an RC circuit (schematic below).
 <br><br>
 <img width="1851" height="563" alt="image" src="https://github.com/user-attachments/assets/9c6171d1-86be-4ac1-ba04-ee41491f772b" />
 <br><br>
@@ -24,11 +24,12 @@ v_C(t) is the voltage across the capacitor, displayed on channel 2 of the oscill
 <br><br>
 **Phase differences**
 <br><br>
-Using time cursors, I measured the time difference between v_in(t) and v_C(t) to be 170us (170 microseconds), which is 48.96 degree phase difference.
+Using time cursors, I measured the time difference between v_in(t) and v_C(t) to be 170us (170 microseconds), which is a 48.96 degree phase difference.
 With a 1kHz cosine wave input, the time difference decreases to 150us, but because of the shortened period, the phase difference actually increases to 54 degrees.
 Since the phase difference is positive, v_C(t) is lagging v_in(t).
 <br><br>
 Voltage across the resistor can be calculated using the subtract operator on the oscilloscope. By KVL, v_R = v_in - v_C. This came out to be about 10V pp.
+
 v_R(t) had a phase shift of approximately -90 degrees, which meant it was leading v_C(t).
 <br><br>
 **Transient response and time constants**
@@ -55,6 +56,7 @@ Using a 10V pp sine wave input, I recorded the amplitude of the capacitor voltag
 | 10kHz | 1.0 |
 | 50kHz | 0.4 |
 | 100kHz | 0.3 |
+
 <br><br>
 Plotting this data on a logarithmically scaled graph gives an approximately linear relationship.
 <br><br>
