@@ -61,4 +61,27 @@ Using a 10V pp sine wave input, I recorded the amplitude of the capacitor voltag
 Plotting this data on a logarithmically scaled graph gives an approximately linear relationship.
 <br><br>
 <img width="1052" height="770" alt="image" src="https://github.com/user-attachments/assets/6cf3c27d-c59f-4784-b8f0-31eac0162584" />
-
+<br><br>
+**AM envelope detector**
+<br><br>
+<img width="531" height="310" alt="image" src="https://github.com/user-attachments/assets/d17e987d-3f66-4488-9186-40a4d47066f7" />
+<br><br>
+AM radio signals are essentially high-frequency sine waves with amplitudes that are modulated by an information/message signal (such as an audio recording). These message signals are at a low frequency, normally in the audio range of 20Hz to 20kHz. Signals of this frequency cannot propagate well, so they have short range and poor penetration through material obstacles. In order for music from a radio station to reach your car, it needs to modulate onto a high-frequency carrier signal so it can travel further. The peaks of the AM signal form the shape of the message signal, also called the AM signal's envelope. The radio receiver will detect this envelope and recover the original message signal to relay to the listener.
+<br><br>
+Adding a diode to the RC circuit turns it into an envelope detector.
+<br><br>
+<img width="1569" height="498" alt="image" src="https://github.com/user-attachments/assets/423b88e9-7923-4cd7-99eb-b6e04383cd47" />
+<br><br>
+Oscilloscope output drawn here: (V/div: 0.5V, t/div: 100us)
+<br><br>
+<img width="587" height="479" alt="image" src="https://github.com/user-attachments/assets/1a5140c6-2edb-4c12-aadd-b1eb321163fa" />
+<br><br>
+When the input voltage reaches the v_on voltage for the diode, the diode starts conducting. The capacitor has more current flowing through it than the resistor that it is in parallel with does, and it charges to its maximum voltage. When voltage drops below v_on, the diode turns off and the capacitor discharges through the resistor, creating a waveform resembling a saw wave. The capacitor voltage waveform traces the peaks of the original voltage signal and does not drop below 0. Cursors measured the frequency of the output (in green) to be 880Hz, the frequency of the message signal.
+<br><br>
+**Extra notes**
+<br><br>
+The RC time constant is only relevant when the capacitor is discharging, because as the capacitor is charging, more current is flowing through it than the resistor.
+<br><br>
+When inverting the input, the output does not invert because of the diode, which requires a threshold voltage v_on before it starts conducting, and which only lets current flow in one direction. Therefore, the charging phase of the capacitor does not match the discharging phase, and the circuit is not linear.
+<br><br>
+It is unnecessary to account for an unknown initial charge in the capacitor because the capacitor voltage will naturally either increase or decrease to the correct signal level by design.
