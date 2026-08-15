@@ -5,10 +5,10 @@ Radio receiver built using an RF module + superheterodyne AM receiver (active ba
 <br><br>
 
 ## Components
-- [IF filter](if-filter)
-- [IF amplifier](if-amplifier)
-- [Diode RC envelope detector](diode-rc-envelope-detector)
-- [Audio amplifier](audio-amplifier)
+- [IF filter](#if-filter)
+- [IF amplifier](#amplifiers)
+- [Diode RC envelope detector](#diode-rc-envelope-detector)
+- [Audio amplifier](#amplifiers)
 <br><br>
 
 ## Lab setup
@@ -85,3 +85,49 @@ The RC time constant is only relevant when the capacitor is discharging, because
 When inverting the input, the output does not invert because of the diode, which requires a threshold voltage v_on before it starts conducting, and which only lets current flow in one direction. Therefore, the charging phase of the capacitor does not match the discharging phase, and the circuit is not linear.
 <br><br>
 It is unnecessary to account for an unknown initial charge in the capacitor because the capacitor voltage will naturally either increase or decrease to the correct signal level by design.
+<br><br>
+
+## Amplifiers
+**IF amplifier**
+<br><br>
+The IF filter uses a LM741 op-amp with +-15V DC sources to create a non-inverting amplifier with a gain of 21. (Schematic below, where R1 = 20k and R2 = 1k)
+<br><br>
+<img width="667" height="482" alt="image" src="https://github.com/user-attachments/assets/5120807e-ee90-4122-b481-7a3ac026d0bd" />
+<br><br>
+Applying a 0.5V pp 100Hz sine wave as the input, I measured v_o to be 10.744V. Measured voltage gain is therefore 10.744/0.497 = 21.596.
+Op-amp non-idealities and deviations in the actual resistance of the resistors contribute to this difference in theoretical and calculated gain.
+<br><br>
+**Audio amplifier**
+<br><br>
+The audio amplifier uses a similar design to the IF amplifier, except with a gain of 2 (R1 = R2 = 1k), and an additional 10k resistor to divert current to ground. Measured gain is v_o/v_i = 1.985/0.980 = 2.0256. (Schematic below)
+<br><br>
+<img width="583" height="471" alt="image" src="https://github.com/user-attachments/assets/271e458a-9d54-4eb4-9818-679649dccc97" />
+<br><br>
+**Three-stage circuit**
+<br><br>
+Now both amplifiers can be placed around the envelope detector like this to form a three-stage circuit:
+<br><br>
+<img width="1403" height="532" alt="image" src="https://github.com/user-attachments/assets/ee902e9f-b4a8-4f46-bc02-f49c69f37759" />
+<br><br>
+I placed a 33uF decoupling capacitor between the envelope detector and audio amplifier to remove the DC component from the input signal of the IF amplifier, since a capacitor acts as an open circuit at DC. The 10k resistor also prevents this capacitor from being charged.
+<br><br>
+In addition, a 33uF capacitor was placed between the ground and -15V rails of the protoboard to filter out voltage fluctuations from the power supply itself.
+<br><br>
+<img width="647" height="444" alt="image" src="https://github.com/user-attachments/assets/5bbc231e-6760-4407-8186-de768835862f" />
+<br><br>
+Essentially, the first amplifier amplifies the input signal enough so that the diode in the envelope detector can turn on and off (v_on can be reached). The second amplifier amplifies the recovered message signal enough to drive a loudspeaker connected to it. It also provides a
+buffer between the envelope detector and the loudspeaker, preventing the loudspeaker from changing the time constant of
+the tuned envelope detector.
+<br><br>
+To test this circuit, I used a 0.2V pp 13kHz sine wave w/out DC offset, modulated with an AM frequency of 880Hz and depth of 80%. A sketch of the input and output on the oscilloscope is shown below: (V/div for input: 50mV, V/div for output: 1V, t/div: 200us)
+<br><br>
+<img width="601" height="488" alt="image" src="https://github.com/user-attachments/assets/77c51e23-4972-47b9-984d-064b70540bc1" />
+<br><br>
+If we sweep the message signal frequency between 100Hz and 2kHz, the envelope output matches AM frequency.
+<br><br>
+## IF filter
+An active bandpass filter can be built using two capacitors and an LM741 op-amp. (Schematic below)
+<br><br>
+<img width="1159" height="604" alt="image" src="https://github.com/user-attachments/assets/4be6b008-4ea8-467a-a3e4-9633572f8ac4" />
+<br><br>
+
