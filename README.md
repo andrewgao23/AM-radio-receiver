@@ -21,11 +21,17 @@ I started off by building an RC circuit:
 <br><br>
 In the diagram above, v_in(t) is a 10V pp 800Hz cosine wave, which I displayed on channel 1 of the oscilloscope. 
 v_C(t) is the voltage across the capacitor, displayed on channel 2 of the oscilloscope.
+<br><br>
+**Phase differences**
+<br><br>
 Using time cursors, I measured the time difference between v_in(t) and v_C(t) to be 170us (170 microseconds), which is 48.96 degree phase difference.
 With a 1kHz cosine wave input, the time difference decreases to 150us, but because of the shortened period, the phase difference actually increases to 54 degrees.
 Since the phase difference is positive, v_C(t) is lagging v_in(t).
+<br><br>
 Voltage across the resistor can be calculated using the subtract operator on the oscilloscope. By KVL, v_R = v_in - v_C. This came out to be about 10V pp.
 v_R(t) had a phase shift of approximately -90 degrees, which meant it was leading v_C(t).
+<br><br>
+**Transient response and time constants**
 <br><br>
 To measure transient response, the waveform was changed to a 1V pp 100Hz square wave with a 0.5V DC offset. Oscilloscope settings were not changed.
 Across the square wave's positive half-period, the capacitor charges. 
@@ -34,6 +40,8 @@ The voltage over the negative half-period is v_C(t) = v_max * e^(−t/RC).
 <br><br>
 The time constant can be measured by setting the trigger to "falling edge" on channel 1 and using time cursors to measure the time it takes for v_C to decay to ~37% of v_max.
 I measured a time constant of 206us, a 6.36% error compared to the calculated time constant of RC = 220us.
+<br><br>
+**Frequency filters**
 <br><br>
 Voltage measured across capacitors and resistors in RC circuits can vary depending on the frequency of the co-sinusoidal input, allowing RC circuits to act as frequency filters and envelope detectors.
 Using a 10V pp sine wave input, I recorded the amplitude of the capacitor voltage for different frequencies.
@@ -47,3 +55,8 @@ Using a 10V pp sine wave input, I recorded the amplitude of the capacitor voltag
 | 10kHz | 1.0 |
 | 50kHz | 0.4 |
 | 100kHz | 0.3 |
+<br><br>
+Plotting this data on a logarithmically scaled graph gives an approximately linear relationship.
+<br><br>
+<img width="1052" height="770" alt="image" src="https://github.com/user-attachments/assets/6cf3c27d-c59f-4784-b8f0-31eac0162584" />
+
