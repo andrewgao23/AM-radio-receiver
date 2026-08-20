@@ -130,4 +130,35 @@ An active bandpass filter can be built using two capacitors and an LM741 op-amp.
 <br><br>
 <img width="1159" height="604" alt="image" src="https://github.com/user-attachments/assets/4be6b008-4ea8-467a-a3e4-9633572f8ac4" />
 <br><br>
+To verify that this is in fact, a bandpass filter, I recorded the amplitude response of the circuit across the frequency rance 1-20kHz.
 
+Starting with a 1kHz 1V pp sine wave, I recorded the magnitude of the phasor voltage gain (|v_o|/|v_i|) at 1kHz intervals and plotted it out on a graph.
+
+Table of values shown below (After 1kHz, only every 3rd value is depicted for brevity. Additional recorded values >20kHz are shown as well.)
+<br><br>
+| Frequency (kHz) | Amplitude Response |
+| ------------- | ------------- |
+| 1 | 0.032 |
+| 4 | 0.114 |
+| 7 | 0.280 |
+| 10 | 0.525 |
+| 13 | 0.845 |
+| 16 | 0.761 |
+| 19 | 0.560 |
+| 21 | 0.462 |
+| 22 | 0.425 |
+| 23 | 0.395 |
+| 24 | 0.363 |
+| 25 | 0.342 |
+| 30 | 0.265 |
+| 40 | 0.193 |
+| 50 | 0.133 |
+| 75 | 0.085 |
+| 100 | 0.065 |
+
+<br><br>
+Graph shown below. (Logarithmic axis)
+<br><br>
+<img width="1025" height="809" alt="image" src="https://github.com/user-attachments/assets/3d73d6c0-e099-414f-bb68-b63110dddf53" />
+<br><br>
+Center frequency is 14kHz with with a maximum amplitude response of 0.873.
