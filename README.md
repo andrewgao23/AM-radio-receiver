@@ -158,4 +158,35 @@ Graph shown below. (Logarithmic axis)
 <br><br>
 <img width="1025" height="809" alt="image" src="https://github.com/user-attachments/assets/3d73d6c0-e099-414f-bb68-b63110dddf53" />
 <br><br>
-Center frequency is 14kHz with with a maximum amplitude response of 0.873.
+Center frequency is 14kHz with with a maximum amplitude response of 0.873. 3dB cutoff frequencies are at 11kHz and 18kHz, both with amplitude responses of 0.615. This circuit thus has a 3dB bandwidth of 7kHz and a quality factor of 14kHz/7kHz = 2.
+<br><br>
+
+## Frequency Domain
+
+Before the message signal is multiplied by the high-frequency carrier signal, a DC component is added so that the voltage always stays above 0, making the message signal easier to recover from the carrier envelope.
+<br><br>
+In order to test various points in the superheterodyne receiver, I first practiced displaying a synthesized AM signal in the frequency domain.
+<br><br>
+1V pp, 14kHz sine wave modulated w/ 880Hz sine wave with 80% modulation depth (adjusts DC component added to message signal). Sketch of oscillscope FFT below (time/div = 1ms, Volt/div = 500mV, frequency span = 20kHz, scale = 15dB/div)
+<br><br>
+<img width="838" height="672" alt="image" src="https://github.com/user-attachments/assets/5eb12e09-9f64-4583-abfb-32ef21a71b04" />
+<br><br>
+Through the modulation property Y(w) = 0.5F(w-w_0) + 0.5F(w+w_0), the carrier cosine function shifts the baseband message before modulation by +- 880Hz, which adds two peaks in the FFT graph: one at 14kHz - 880Hz = 13.12kHz, and one at 14.88kHz.
+<br><br>
+With a square message signal, oscilloscope FFT changes to this (settings do not change):
+<br><br>
+<img width="826" height="670" alt="image" src="https://github.com/user-attachments/assets/bfd2afcd-722e-4403-8e50-c7046fe6dc09" />
+<br><br>
+The spectrum shows multiple pairs of lines symmetrically placed around the 14kHz carrier, decreasing in amplitude with harmonic order. 
+<br><br>
+
+## Testing
+
+Connecting the function generator to the local oscillator input on the frequency mixer, I tuned WILL 580 (580kHz) by selecting an appropriate mixing frequency with 100 mV pp as the local oscillator so that the intermediate frequency is 14kHz.
+<br><br>
+**Test Point 1: RF Amplifier**
+<br><br>
+(time/div = 500us, span = 400kHz, scale = 20dB/div, Volt/div = 10mV)
+<br><br>
+<img width="607" height="493" alt="image" src="https://github.com/user-attachments/assets/7d8f211a-a9ff-4c9b-94c1-d13b8d181e02" />
+<br><br>
