@@ -186,7 +186,28 @@ Connecting the function generator to the local oscillator input on the frequency
 <br><br>
 **Test Point 1: RF Amplifier**
 <br><br>
-(time/div = 500us, span = 400kHz, scale = 20dB/div, Volt/div = 10mV)
+(time/div = 500us, span = 400kHz, scale = 20dBV, Volt/div = 10mV)
 <br><br>
 <img width="607" height="493" alt="image" src="https://github.com/user-attachments/assets/7d8f211a-a9ff-4c9b-94c1-d13b8d181e02" />
 <br><br>
+
+**Test Point 2: Frequency Mixer**
+<br><br>
+(time/div = 1ms, span = 28kHz, scale = 20dBV, Volt/div = 200mV)
+<br><br>
+<img width="528" height="430" alt="image" src="https://github.com/user-attachments/assets/ba8562fb-c4b6-4ac6-8a38-dd538039e78f" />
+<br><br>
+
+**Test Point 3: IF Filter & Amplifier**
+<br><br>
+(time/div = 50us, span = 28kHz, scale = 20dBV, Volt/div = 200mV)
+<br><br>
+<img width="531" height="432" alt="image" src="https://github.com/user-attachments/assets/215e23b6-9146-447e-9588-ead54788ed09" />
+<br><br>
+
+**Test Point 4: Envelope Detector & Audio Amplifier**
+<br><br>
+Hooking up the output of the audio amplifier to the speaker and tuning to radio station WILL 580 kHz yields audible sound outputs from the speaker.
+<br><br>
+
+
