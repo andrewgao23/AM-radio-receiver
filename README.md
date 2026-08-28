@@ -210,4 +210,31 @@ Connecting the function generator to the local oscillator input on the frequency
 Hooking up the output of the audio amplifier to the speaker and tuning to radio station WILL 580 kHz yields audible sound outputs from the speaker.
 <br><br>
 
-
+## Software Radio
+A software radio with the same specifications as the analog receiver circuit will allow analysis between continuous-time system outputs and discrete-time signal processing (DSP). The conversion of a continuous-time input signal to a discrete-time signal is called sampling (or A/D conversion), and the conversion of a discrete-time signal to a continuous-time output signal is called reconstruction (or D/A conversion). Samples f(nT) of a band-limited analog signal f(t) can be used to reconstruct f(t) exactly when the sampling interval T and signal bandwidth Ω = 2πB satisfy the Nyquist criterion T < 1/(2B).
+<br><br>
+**Synthetic AM signal processed using softRx**
+<br><br>
+For this, I used MATLAB/Simulink with a softRx program to compare continuous-time and frequency domains. First I generated a 13kHz 250mV pp sine wave modulated w/ 880Hz message signal at 80% modulation depth.
+<br><br>
+<img width="877" height="717" alt="image" src="https://github.com/user-attachments/assets/29459775-eb47-4071-9432-12271746698e" />
+<br><br>
+The strong impulse at 13kHz in the frequency domain represents the carrier frequency of the AM signal. The other two impulses surrounding the 13kHz impulse are the sidebands, located at 13kHz +- 880Hz. This represents the modulation property in Y(w)(0.5F(w+w_0)+0.5F(w-w_0)).
+<br><br>
+Next I simulated an IF bandpass filter in softRx and sketched the frequency domain output.
+<br><br>
+<img width="877" height="402" alt="image" src="https://github.com/user-attachments/assets/05e91e43-fcaf-438c-82cc-5479fbdbc928" />
+<br><br>
+Adding an envelope detector to the simulation yields the following outputs in frequency and time domains respectively:
+<br><br>
+<img width="812" height="682" alt="image" src="https://github.com/user-attachments/assets/94412843-2fab-46c6-b6a8-b83930dad278" />
+<br><br>
+In the time domain, we see a somewhat sinusoidal signal, while in the frequency domain, we see a dominant signal at 880Hz with a 40-50dB amplitude, which is much more than the other harmonic signals. The envelope detector recovered the original message signal from the IF AM signal centered at 13kHz.
+<br><br>
+Block diagram for the software simulation of the AM receiver (IF filter only, IF filter + envelope detector, respectively):
+<br><br>
+<img width="1231" height="225" alt="image" src="https://github.com/user-attachments/assets/0e20b017-e71c-4857-9104-4a36d2454ad0" />
+<img width="1397" height="220" alt="image" src="https://github.com/user-attachments/assets/2d919561-020f-42dc-bfa2-c604b9e018b5" />
+<br><br>
+**Receiving broadcast AM**
+<br><br>
