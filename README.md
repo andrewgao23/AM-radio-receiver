@@ -238,3 +238,4 @@ Block diagram for the software simulation of the AM receiver (IF filter only, IF
 <br><br>
 **Receiving broadcast AM**
 <br><br>
+With a 13kHz IF, local oscillator frequencies must be +- 13kHz with respect to the radio station frequencies. (566kHz or 593kHz when tuning to AM 580, and 1387kHz or 1413kHz when tuning to AM 1400)
