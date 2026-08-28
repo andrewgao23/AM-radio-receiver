@@ -238,4 +238,16 @@ Block diagram for the software simulation of the AM receiver (IF filter only, IF
 <br><br>
 **Receiving broadcast AM**
 <br><br>
-With a 13kHz IF, local oscillator frequencies must be +- 13kHz with respect to the radio station frequencies. (566kHz or 593kHz when tuning to AM 580, and 1387kHz or 1413kHz when tuning to AM 1400)
+Connecting the antenna and RF module allows the circuit to receive real broadcast AM. With a 13kHz IF, local oscillator frequencies must be +- 13kHz with respect to the radio station frequencies. (566kHz or 593kHz when tuning to AM 580, and 1387kHz or 1413kHz when tuning to AM 1400)
+<br><br>
+With IF filter only, the output in the frequency domain has a 10kHz bandwidth:
+<br><br>
+<img width="676" height="301" alt="image" src="https://github.com/user-attachments/assets/a4da1d14-5114-452c-b2ca-2a7d87fbe71b" />
+<br><br>
+With an envelope detector added, the output has a 4kHz bandwidth:
+<br><br>
+<img width="661" height="580" alt="image" src="https://github.com/user-attachments/assets/b3659a85-5d50-410f-8755-0faaf81d73ea" />
+<br><br>
+This software receiver mirrors the analog system, where the digital IF bandpass filter (8-18kHz) corresponds to the analog active bandpass filter (f_0 = 14kHz) and the envelope detector corresponds to the diode envelope detector used in the analog circuit. The frequency domain outputs at each test point closely match the ones tested on the analog circuit, and the DSP allows precise cutoffs for frequencies while the analog system has non-idealities that change the output.
+<br><br>
+Connecting a pair of loudspeakers to the speaker output should then output AM 1400 or WILL 580 radio!
